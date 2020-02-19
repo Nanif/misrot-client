@@ -1,0 +1,22 @@
+<app-header *ngIf="!manager" class="header"></app-header>
+
+<app-header-manager *ngIf="manager" class="header"></app-header-manager>
+
+<meta name="robots" content="index ">
+<meta name="keywords"
+    content="משרות, דרושים, דרושות, דרושה, חרדי, חרדית, חרדיות, סביבת עבודה, גלאט, כשר, עבודה,פרנסה, כשרה,אידיאל, זו מזו">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="אידיאל- מאגר המשרות היחודי לעובדות החרדיות">
+<router-outlet>
+    <div id="divNav" style="width: 100vw;height:10vh;margin-bottom: 2vh"></div>
+</router-outlet>
+
+<!-- <button  (click)="gotoTop()" *ngIf="isShow"><i class="material-icons" id="scroll" >
+    keyboard_arrow_up
+    </i></button> -->
+<label> <i class="material-icons" (click)="gotoTop()" id="scroll" mat-icon-button> keyboard_arrow_up</i></label>
+
+
+
+
+<app-footer></app-footer>

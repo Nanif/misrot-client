@@ -1,0 +1,72 @@
+
+<body class="align" *ngIf="!notRegistered">
+
+  <div class="grid">
+
+    <form #bossRegisterForm="ngForm" class="form login">
+      <!-- (ngSubmit)="password.reset();mail.reset()"> -->
+      <br>
+      <br>
+      <br>
+      <h2 style="text-align: center"> רישום משתפת משרה</h2>
+      <div class="form__field" id="login-show">
+        <label for="login__username"><svg class="icon">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
+          </svg><span class="hidden">שם</span></label>
+        <input id="login__username" type="text" name="username" class="form__input" placeholder="*שם"
+        #bossname required>
+          <!-- [(ngModel)]="currentBoss.BossName" required> -->
+      </div>
+
+      <div class="form__field">
+        <label for="login__password"><svg class="icon">
+          </svg><span class="hidden">סיסמא</span></label>
+        <input id="login__password" type="password" name="password" class="form__input" placeholder="*סיסמא"
+          #bosspassword required minlength="6" required><br>
+
+          <!-- [(ngModel)]="currentBoss.BossPassword" required> -->
+      </div>                <mat-error *ngIf="bosspassword.value!=''&&bosspassword.value.length<6">אורך הסיסמא חייב להיות מינימום 6 תוים 
+      </mat-error>
+      <div class="form__field">
+        <label for="login__phone"><svg class="icon">
+          </svg><span class="hidden">טלפון</span></label>
+        <input id="login__password" type="text" name="phone" class="form__input" placeholder="*טלפון"
+        #bosstel minlength="9" required pattern="^\d+$" required>
+          <!-- [(ngModel)]="currentBoss.BossTel" required> -->
+      </div>
+      <div class="form__field">
+        <label for="login__phone"><svg class="icon">
+          </svg><span class="hidden">סיסמא</span></label>
+        <input id="login__password" type="email" name="mail" class="form__input" placeholder="*כתובת מייל"
+         #bossemail required>
+          <!-- [(ngModel)]="currentBoss.BossMail" required> -->
+      </div>
+      <h4 style="text-align: center;direction: rtl"> החברה שבה אני עובדת:</h4>
+      <div class="form__field">
+        <label for="login__phone"><svg class="icon">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mail"></use>
+          </svg><span class="hidden">סיסמא</span></label>
+
+        <select (change)="company1($event.target.value)" class="form__input">
+          <option *ngFor="let c of company" value="{{c.CompanyId}}">{{c.CompanyName}}</option>
+
+        </select>
+      </div>
+      <input type="button" id="addCompany" value="החברה לא קיימת? הוסיפי כאן !" (click)="addCompany()"  matTooltip="לא מלאת את כל הפרטים"/>
+      <br />
+      <mat-checkbox #BossIsConnection  [checked]="true">אני מסכימה להיות איש קשר</mat-checkbox>
+
+      <br />
+      <div class="form__field">
+        <input (click)="register(bossname,bosspassword,bosstel,bossemail,BossIsConnection)" type="submit" value="הרשמי"
+          [disabled]="!bossRegisterForm.form.valid"
+          [ngClass]="{ 'is-invalid':!bossRegisterForm.form.valid}" >
+      </div>
+    </form>
+  </div>
+
+
+
+</body>
+
+<app-add-company *ngIf="notRegistered"></app-add-company>
